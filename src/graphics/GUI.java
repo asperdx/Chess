@@ -157,6 +157,10 @@ public class GUI extends Thread {
         graphicsControl.render(g, width, height);
     }
 
+    public GraphicsController getGraphicsControl() {
+        return graphicsControl;
+    }
+    
 }
 
 class FPSCounter extends TimerTask {

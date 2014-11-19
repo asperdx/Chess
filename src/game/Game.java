@@ -1,5 +1,4 @@
 package game;
-
 /**
  * Written by TheSoberRussian on 11/18/14.
  */
@@ -48,6 +47,7 @@ public class Game {
                 case 0:
                     if (board.movePiece(startPos, endPos)) {
                         board.printBoard();
+                        Main.getGui().getGraphicsControl().updateBoard(board);
                         newTurn();
                     } else {
                         System.out.println("That piece can't move there, try again");
