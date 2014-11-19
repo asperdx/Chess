@@ -21,6 +21,10 @@ public class Board {
         this.board = board;
     }
 
+    public ColorTeam getTeam(int x, int y) {
+        return board[x][y].getColorTeam();
+    }
+
     public void printBoard(){
         for (Piece[] aBoard : board) {
             for (int j = 0; j < aBoard.length; j++) {
