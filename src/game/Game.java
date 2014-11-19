@@ -46,9 +46,12 @@ public class Game {
             Locations endPos = new Locations(x2, y2);
             switch (validPos(startPos)) {
                 case 0:
-                    board.movePiece(startPos, endPos);
-                    board.printBoard();
-                    newTurn();
+                    if (board.movePiece(startPos, endPos)) {
+                        board.printBoard();
+                        newTurn();
+                    } else {
+                        System.out.println("That piece can't move there, try again");
+                    }
                     break;
                 case 1:
                     System.out.println("Your team doesn't own that piece, try again");

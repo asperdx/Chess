@@ -28,4 +28,22 @@ public class Locations {
     public void setColumn(int column) {
         this.column = column;
     }
+
+    @Override
+    public String toString() {
+        return row + " " + column;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        boolean sameRow = false;
+        boolean sameColumn = false;
+
+        if (object != null && object instanceof Locations) {
+            sameRow = this.row == ((Locations) object).row;
+            sameColumn = this.column == ((Locations) object).column;
+        }
+
+        return sameRow && sameColumn;
+    }
 }

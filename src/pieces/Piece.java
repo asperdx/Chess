@@ -3,6 +3,8 @@ package pieces;
 import game.ColorTeam;
 import game.Locations;
 
+import java.util.ArrayList;
+
 /**
  * Written by TheSoberRussian on 11/18/14.
  */
@@ -35,7 +37,11 @@ public class Piece {
         return "X";
     }
 
-    public Locations[] moveLocations(int x, int y) {
+    public Locations[] moveLocations(Locations pos) {
+        return null;
+    }
+
+    public ArrayList<Locations> getPath(Locations begin, Locations end) {
         return null;
     }
 }
