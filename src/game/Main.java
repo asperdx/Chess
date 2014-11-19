@@ -3,7 +3,7 @@ package game;
 import java.util.Scanner;
 
 /**
- * Created by kllrshrk on 11/18/14.
+ * Written by TheSoberRussian on 11/18/14.
  */
 public class Main {
 
@@ -12,10 +12,11 @@ public class Main {
         Game game = new Game();
         Scanner input = new Scanner(System.in);
 
+
         while (game.gameRunning){
-            game.newTurn();
             System.out.printf("Make a move: ");
             String move = input.nextLine();
+            game.makeMove(move);
         }
 
 

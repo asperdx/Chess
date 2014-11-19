@@ -2,10 +2,8 @@ package game;
 
 import pieces.Piece;
 
-import javax.lang.model.type.NullType;
-
 /**
- * Created by kllrshrk on 11/18/14.
+ * Written by TheSoberRussian on 11/18/14.
  */
 public class Board {
 
@@ -24,14 +22,18 @@ public class Board {
     }
 
     public void printBoard(){
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[i].length; j++) {
-                if (board[i][j] != null)
-                    System.out.print(board[i][j].toString());
+        for (Piece[] aBoard : board) {
+            for (int j = 0; j < aBoard.length; j++) {
+                if (aBoard[j] != null)
+                    System.out.print(aBoard[j].toString());
                 else
                     System.out.print("x");
             }
             System.out.println();
         }
+    }
+
+    public boolean checkLocation(String x) {
+        return x.matches("[a-h][1-8]");
     }
 }
