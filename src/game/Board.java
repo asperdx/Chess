@@ -83,4 +83,10 @@ public class Board {
         }
 
     }
+
+    public boolean checkPath(Locations start, Locations end, boolean attacking) {
+
+
+        return true;
+    }
 }
