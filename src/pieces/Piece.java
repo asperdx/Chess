@@ -35,7 +35,7 @@ public class Piece {
         return "X";
     }
 
-    public Locations[] moveLocations(int x, int y) {
+    public Locations[] moveLocations(Locations pos) {
         return null;
     }
 }

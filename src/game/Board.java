@@ -2,6 +2,8 @@ package game;
 
 import pieces.Piece;
 
+import java.util.ArrayList;
+
 /**
  * Written by TheSoberRussian on 11/18/14.
  */
@@ -57,15 +59,28 @@ public class Board {
         return board[pos.getRow()][pos.getColumn()] == null;
     }
 
-    public void movePiece(Locations start, Locations end) {
+    public boolean movePiece(Locations start, Locations end) {
 
         int x1 = start.getRow();
         int x2 = end.getRow();
         int y1 = start.getColumn();
         int y2 = end.getColumn();
 
-        board[x2][y2] = board[x1][y1];
-        board[x1][y1] = null;
+        Locations[] positionsBeforeCheck = board[x1][y1].moveLocations(start);
+        ArrayList<Locations> dynamicList = new ArrayList<Locations>();
+        for (int i = 0; i < positionsBeforeCheck.length; i++) {
+            if (checkPos(positionsBeforeCheck[i]))
+                dynamicList.add(positionsBeforeCheck[i]);
+        }
+
+
+        if (dynamicList.contains(end)) {
+            board[x2][y2] = board[x1][y1];
+            board[x1][y1] = null;
+            return true;
+        } else {
+            return false;
+        }
 
     }
 }
