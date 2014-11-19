@@ -38,7 +38,6 @@ public class Game {
         } else if (!board.checkLocation(pos[1].toLowerCase())) {
             System.out.println(pos[1] + " is invalid. Usage: [a-h][1-8] to [a-h][1-8]");
         } else {
-            //System.out.println("Valid location");
             int x = (pos[0].charAt(0)) - 97;
             int y = Integer.parseInt(pos[1].substring(1));
             if (validTeam(x, y)) {
