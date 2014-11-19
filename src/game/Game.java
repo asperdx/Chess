@@ -1,4 +1,5 @@
 package game;
+
 /**
  * Written by TheSoberRussian on 11/18/14.
  */
@@ -37,10 +38,22 @@ public class Game {
         } else if (!board.checkLocation(pos[1])) {
             System.out.println(pos[1] + " is invalid. Usage: [a-h][1-8] to [a-h][1-8]");
         } else {
-            System.out.println("Valid location");
-            newTurn();
+            //System.out.println("Valid location");
+            int x = (pos[0].charAt(0)) - 97;
+            int y = Integer.parseInt(pos[1].substring(1));
+            if (validTeam(x, y)) {
+                //System.out.println("valid team");
+                newTurn();
+            } else {
+                System.out.println("Your team doesn't own that piece, try again");
+            }
         }
 
 
+    }
+
+    public boolean validTeam(int x, int y) {
+
+        return board.getTeam(x, y).checkTeam(turn);
     }
 }

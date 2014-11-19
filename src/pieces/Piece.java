@@ -21,6 +21,14 @@ public class Piece {
         return true;
     }
 
+    public ColorTeam getColorTeam() {
+        return colorTeam;
+    }
+
+    public void setColorTeam(ColorTeam colorTeam) {
+        this.colorTeam = colorTeam;
+    }
+
     @Override
     public String toString() {
         return "X";
