@@ -1,6 +1,9 @@
 package pieces;
 
 import game.Locations;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by kllrshrk on 11/18/14.
@@ -52,7 +55,12 @@ public class Queen extends Piece {
         for (int i = 56; i < 64; i++) {
             list[i] = new Locations(row - i, column - i);
         }
+//        List rookMoves = Arrays.asList(new Rook(this.colorTeam.getTeam()).moveLocations(pos));
+//        List bishopMoves = Arrays.asList(new Bishop(this.colorTeam.getTeam()).moveLocations(pos));
+//        Collections.addAll(rookMoves, bishopMoves);
+//        return (Locations[])rookMoves.toArray();
         return list;
+        
     }
 
     @Override
