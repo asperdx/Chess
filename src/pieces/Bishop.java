@@ -35,17 +35,17 @@ public class Bishop extends Piece {
         int column = pos.getColumn();
 
         Locations[] list = new Locations[32];
-        for (int i = 0; i < 8; i++) {
-            list[i] = new Locations(row + i, column + i);
+        for (int i = 1; i <= 8; i++) {
+            list[i - 1] = new Locations(row + i, column + i);
         }
-        for (int i = 8; i < 16; i++) {
-            list[i] = new Locations(row + i, column - i);
+        for (int i = 1; i <= 8; i++) {
+            list[i + 7] = new Locations(row + i, column - i);
         }
-        for (int i = 16; i < 24; i++) {
-            list[i] = new Locations(row - i, column + i);
+        for (int i = 1; i <= 8; i++) {
+            list[i + 15] = new Locations(row - i, column + i);
         }
-        for (int i = 24; i < 32; i++) {
-            list[i] = new Locations(row - i, column - i);
+        for (int i = 1; i <= 8; i++) {
+            list[i + 23] = new Locations(row - i, column - i);
         }
         return list;
     }
@@ -62,21 +62,21 @@ public class Bishop extends Piece {
         ArrayList<Locations> list = new ArrayList<Locations>();
         if (startRow < endRow) {
             if (startColumn < endColumn) {
-                for (int i = 0; i < endRow - startRow; i++) {
-                    list.add(new Locations(startRow - i, startColumn + i));
+                for (int i = 1; i <= endRow - startRow; i++) {
+                    list.add(new Locations(startRow + i, startColumn + i));
                 }
             } else {
-                for (int i = 0; i < endRow - startRow; i++) {
-                    list.add(new Locations(startRow - i, startColumn - i));
+                for (int i = 1; i <= endRow - startRow; i++) {
+                    list.add(new Locations(startRow + i, startColumn - i));
                 }
             }
         } else {
             if (startColumn < endColumn) {
-                for (int i = 0; i < startRow - endRow; i++) {
+                for (int i = 1; i <= startRow - endRow; i++) {
                     list.add(new Locations(startRow - i, startColumn + i));
                 }
             } else {
-                for (int i = 0; i < startRow - endRow; i++) {
+                for (int i = 1; i <= startRow - endRow; i++) {
                     list.add(new Locations(startRow - i, startColumn - i));
                 }
             }

@@ -30,6 +30,11 @@ public class Locations {
     }
 
     @Override
+    public String toString() {
+        return row + " " + column;
+    }
+
+    @Override
     public boolean equals(Object object) {
         boolean sameRow = false;
         boolean sameColumn = false;

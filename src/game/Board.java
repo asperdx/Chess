@@ -4,6 +4,7 @@ import pieces.Knight;
 import pieces.Piece;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Written by TheSoberRussian on 11/18/14.
@@ -66,6 +67,7 @@ public class Board {
         int x2 = end.getRow();
         int y1 = start.getColumn();
         int y2 = end.getColumn();
+        boolean attacking = false;
 
 
         Locations[] positionsBeforeCheck = board[x1][y1].moveLocations(start);
@@ -77,13 +79,20 @@ public class Board {
 
 
         if (dynamicList.contains(end)) {
-            board[x2][y2] = board[x1][y1];
-            board[x1][y1] = null;
-            return true;
-        } else {
-            return false;
+            switch (checkPath(start, end, attacking)) {
+                case 0:
+                    return false;
+                case 1:
+                    return false;
+                case 2:
+                    board[x2][y2] = board[x1][y1];
+                    board[x1][y1] = null;
+                    return true;
+            }
+
         }
 
+        return false;
     }
 
     public int checkPath(Locations start, Locations end, boolean attacking) {
@@ -94,20 +103,26 @@ public class Board {
 
         ColorTeam team = board[row][column].getColorTeam();
 
+        System.out.println(Arrays.toString(list.toArray()));
+
         for (Locations x : list) {
-            ColorTeam temp = board[x.getRow()][x.getColumn()].getColorTeam();
-            if (team.equals(temp) && !(board[x.getRow()][x.getColumn()] instanceof Knight)) {
-                //team mate in the way - doesn't apply to knights
-                return 0;
+            if (board[x.getRow()][x.getColumn()] != null) {
+                ColorTeam temp = board[x.getRow()][x.getColumn()].getColorTeam();
+                if (team.equals(temp) && !(board[x.getRow()][x.getColumn()] instanceof Knight)) {
+                    //team mate in the way - doesn't apply to knights
+                    return 0;
+                }
             }
         }
 
         for (int i = 0; i < list.size() - 1; ++i) {
             Locations x = list.get(i);
-            ColorTeam temp = board[x.getRow()][x.getColumn()].getColorTeam();
-            if (!team.equals(temp)) {
-                //last piece isn't an opposite color, too long of a movie - must attack
-                return 1;
+            if (board[x.getRow()][x.getColumn()] != null) {
+                ColorTeam temp = board[x.getRow()][x.getColumn()].getColorTeam();
+                if (!team.equals(temp)) {
+                    //last piece isn't an opposite color, too long of a movie - must attack
+                    return 1;
+                }
             }
         }
 

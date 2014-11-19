@@ -2,6 +2,8 @@ package pieces;
 
 import game.Locations;
 
+import java.util.ArrayList;
+
 /**
  * Created by kllrshrk on 11/18/14.
  */
@@ -59,6 +61,30 @@ public class Pawn extends Piece {
             }
             firstmove = false;
 
+        }
+
+        return list;
+    }
+
+    @Override
+    public ArrayList<Locations> getPath(Locations begin, Locations end) {
+
+        int startRow = begin.getRow();
+        int startColumn = begin.getColumn();
+
+        int endRow = end.getRow();
+        int endColumn = end.getColumn();
+
+        ArrayList<Locations> list = new ArrayList<Locations>();
+
+        if (startRow > endRow) {
+            for (int i = 1; i <= startRow - endRow; i++) {
+                list.add(new Locations(startRow - i, startColumn));
+            }
+        } else {
+            for (int i = 1; i <= endRow - startRow; i++) {
+                list.add(new Locations(startRow + i, startColumn));
+            }
         }
 
         return list;
