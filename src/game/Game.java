@@ -42,7 +42,6 @@ public class Game {
             int x = (pos[0].charAt(0)) - 97;
             int y = Integer.parseInt(pos[1].substring(1));
             if (validTeam(x, y)) {
-                //System.out.println("valid team");
                 newTurn();
             } else {
                 System.out.println("Your team doesn't own that piece, try again");
