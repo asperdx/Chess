@@ -1,7 +1,20 @@
 Chess
 =====
 
-Version 0.1
+Version 0.2
+------
 
-Sets up a board :-)
-TEST
+Features:
+-----
+* Sets up board
+* Sets up pieces
+* Checks piece's team
+* Check pos for piece
+* Moves piece with board update
+
+
+Todo:
+----
+
+* Add GUI
+* Valid Moves by Piece type
