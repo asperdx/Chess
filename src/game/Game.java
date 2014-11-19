@@ -29,7 +29,10 @@ public class Game {
     public void makeMove(String turn) {
 
         String[] pos = turn.split(" to ");
-        if (!board.checkLocation(pos[0].toLowerCase())) {
+        if (pos.length != 2) {
+            System.out.println("Invalid use. Usage: [a-h][1-8] to [a-hh][1-8]");
+
+        } else if (!board.checkLocation(pos[0].toLowerCase())) {
             System.out.println(pos[0] + " is invalid. Usage: [a-h][1-8] to [a-hh][1-8]");
         } else if (!board.checkLocation(pos[1])) {
             System.out.println(pos[1] + " is invalid. Usage: [a-h][1-8] to [a-h][1-8]");

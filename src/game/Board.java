@@ -36,4 +36,6 @@ public class Board {
     public boolean checkLocation(String x) {
         return x.matches("[a-h][1-8]");
     }
+
+    //public String
 }
