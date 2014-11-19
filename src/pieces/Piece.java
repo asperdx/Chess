@@ -1,9 +1,10 @@
 package pieces;
 
 import game.ColorTeam;
+import game.Locations;
 
 /**
- * Created by kllrshrk on 11/18/14.
+ * Written by TheSoberRussian on 11/18/14.
  */
 public class Piece {
 
@@ -32,5 +33,9 @@ public class Piece {
     @Override
     public String toString() {
         return "X";
+    }
+
+    public Locations[] moveLocations(int x, int y) {
+        return null;
     }
 }

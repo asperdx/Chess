@@ -1,7 +1,9 @@
 package pieces;
 
+import game.Locations;
+
 /**
- * Created by kllrshrk on 11/18/14.
+ * Written by TheSoberRussian on 11/18/14.
  */
 public class Bishop extends Piece {
     public Bishop(String team) {
@@ -21,5 +23,12 @@ public class Bishop extends Piece {
     @Override
     public String toString() {
         return "B";
+    }
+
+    @Override
+    public Locations[] moveLocations(int x, int y) {
+
+
+        return null;
     }
 }

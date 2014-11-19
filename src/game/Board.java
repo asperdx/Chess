@@ -23,8 +23,8 @@ public class Board {
         this.board = board;
     }
 
-    public ColorTeam getTeam(int x, int y) {
-        return board[x][y].getColorTeam();
+    public ColorTeam getTeam(Locations pos) {
+        return board[pos.getRow()][pos.getColumn()].getColorTeam();
     }
 
     public void printBoard(){
@@ -46,12 +46,23 @@ public class Board {
         return x.matches("[a-h][1-8]");
     }
 
-    public boolean emptySpot(int x, int y) {
-
-        return board[x][y] == null;
+    public boolean checkPos(Locations pos) {
+        int x = pos.getRow();
+        int y = pos.getColumn();
+        return x >= 0 && x <= 7 && y >= 0 && y <= 7;
     }
 
-    public void movePiece(int x1, int y1, int x2, int y2) {
+    public boolean emptySpot(Locations pos) {
+
+        return board[pos.getRow()][pos.getColumn()] == null;
+    }
+
+    public void movePiece(Locations start, Locations end) {
+
+        int x1 = start.getRow();
+        int x2 = end.getRow();
+        int y1 = start.getColumn();
+        int y2 = end.getColumn();
 
         board[x2][y2] = board[x1][y1];
         board[x1][y1] = null;

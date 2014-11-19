@@ -42,9 +42,11 @@ public class Game {
             int y1 = Integer.parseInt(pos[0].substring(1)) - 1;
             int x2 = (pos[1].charAt(0)) - 97;
             int y2 = Integer.parseInt(pos[1].substring(1)) - 1;
-            switch (validPos(x1, y1)) {
+            Locations startPos = new Locations(x1, y1);
+            Locations endPos = new Locations(x2, y2);
+            switch (validPos(startPos)) {
                 case 0:
-                    board.movePiece(x1, y1, x2, y2);
+                    board.movePiece(startPos, endPos);
                     board.printBoard();
                     newTurn();
                     break;
@@ -61,10 +63,11 @@ public class Game {
     }
 
 
-    public int validPos(int x, int y) {
+    public int validPos(Locations pos) {
 
-        if (!board.emptySpot(x, y))
-            if (board.getTeam(x, y).checkTeam(turn)) {
+
+        if (!board.emptySpot(pos))
+            if (board.getTeam(pos).checkTeam(turn)) {
                 return 0;
             } else {
                 return 1;
