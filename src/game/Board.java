@@ -1,5 +1,6 @@
 package game;
 
+import pieces.Knight;
 import pieces.Piece;
 
 import java.util.ArrayList;
@@ -66,6 +67,7 @@ public class Board {
         int y1 = start.getColumn();
         int y2 = end.getColumn();
 
+
         Locations[] positionsBeforeCheck = board[x1][y1].moveLocations(start);
         ArrayList<Locations> dynamicList = new ArrayList<Locations>();
         for (int i = 0; i < positionsBeforeCheck.length; i++) {
@@ -84,9 +86,31 @@ public class Board {
 
     }
 
-    public boolean checkPath(Locations start, Locations end, boolean attacking) {
+    public int checkPath(Locations start, Locations end, boolean attacking) {
 
+        int row = start.getRow();
+        int column = start.getColumn();
+        ArrayList<Locations> list = board[row][column].getPath(start, end);
 
-        return true;
+        ColorTeam team = board[row][column].getColorTeam();
+
+        for (Locations x : list) {
+            ColorTeam temp = board[x.getRow()][x.getColumn()].getColorTeam();
+            if (team.equals(temp) && !(board[x.getRow()][x.getColumn()] instanceof Knight)) {
+                //team mate in the way - doesn't apply to knights
+                return 0;
+            }
+        }
+
+        for (int i = 0; i < list.size() - 1; ++i) {
+            Locations x = list.get(i);
+            ColorTeam temp = board[x.getRow()][x.getColumn()].getColorTeam();
+            if (!team.equals(temp)) {
+                //last piece isn't an opposite color, too long of a movie - must attack
+                return 1;
+            }
+        }
+
+        return 2;
     }
 }
