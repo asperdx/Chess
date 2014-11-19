@@ -38,20 +38,39 @@ public class Game {
         } else if (!board.checkLocation(pos[1].toLowerCase())) {
             System.out.println(pos[1] + " is invalid. Usage: [a-h][1-8] to [a-h][1-8]");
         } else {
-            int x = (pos[0].charAt(0)) - 97;
-            int y = Integer.parseInt(pos[1].substring(1));
-            if (validTeam(x, y)) {
-                newTurn();
-            } else {
-                System.out.println("Your team doesn't own that piece, try again");
+            int x1 = (pos[0].charAt(0)) - 97;
+            int y1 = Integer.parseInt(pos[0].substring(1)) - 1;
+            int x2 = (pos[1].charAt(0)) - 97;
+            int y2 = Integer.parseInt(pos[1].substring(1)) - 1;
+            switch (validPos(x1, y1)) {
+                case 0:
+                    board.movePiece(x1, y1, x2, y2);
+                    board.printBoard();
+                    newTurn();
+                    break;
+                case 1:
+                    System.out.println("Your team doesn't own that piece, try again");
+                    break;
+                case 2:
+                    System.out.println("There isn't a piece there. Try again");
+                    break;
             }
         }
 
 
     }
 
-    public boolean validTeam(int x, int y) {
 
-        return board.getTeam(x, y).checkTeam(turn);
+    public int validPos(int x, int y) {
+
+        if (!board.emptySpot(x, y))
+            if (board.getTeam(x, y).checkTeam(turn)) {
+                return 0;
+            } else {
+                return 1;
+            }
+        else {
+            return 2;
+        }
     }
 }
