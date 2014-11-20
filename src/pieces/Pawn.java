@@ -51,7 +51,6 @@ public class Pawn extends Piece {
             if (firstmove) {
                 list[3] = new Locations(row + 2, column);
             }
-            firstmove = false;
         } else {
             list[0] = new Locations(row - 1, column);
             list[1] = new Locations(row - 1, column + 1);
@@ -59,7 +58,6 @@ public class Pawn extends Piece {
             if (firstmove) {
                 list[3] = new Locations(row - 2, column);
             }
-            firstmove = false;
 
         }
 
@@ -87,6 +85,7 @@ public class Pawn extends Piece {
             }
         }
 
+        firstmove = false;
         return list;
     }
 }

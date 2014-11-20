@@ -4,7 +4,6 @@ import pieces.Knight;
 import pieces.Piece;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Written by TheSoberRussian on 11/18/14.
@@ -102,8 +101,6 @@ public class Board {
         ArrayList<Locations> list = board[row][column].getPath(start, end);
 
         ColorTeam team = board[row][column].getColorTeam();
-
-        System.out.println(Arrays.toString(list.toArray()));
 
         for (Locations x : list) {
             if (board[x.getRow()][x.getColumn()] != null) {
