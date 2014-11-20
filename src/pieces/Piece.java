@@ -2,6 +2,7 @@ package pieces;
 
 import game.ColorTeam;
 import game.Locations;
+import java.awt.Graphics2D;
 
 import java.util.ArrayList;
 
@@ -43,5 +44,8 @@ public class Piece {
 
     public ArrayList<Locations> getPath(Locations begin, Locations end) {
         return null;
+    }
+    public void draw(Graphics2D g, int width, int height){
+        g.drawOval(2, 2, width - 4, height - 4);
     }
 }
