@@ -120,7 +120,7 @@ public class Board {
             if (board[x.getRow()][x.getColumn()] != null) {
                 ColorTeam temp = board[x.getRow()][x.getColumn()].getColorTeam();
                 if (!team.equals(temp)) {
-                    //last piece isn't an opposite color, too long of a movie - must attack
+                    //last piece isn't an opposite color, too long of a move - must attack
                     return 1;
                 }
             }

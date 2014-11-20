@@ -1,9 +1,6 @@
 package pieces;
 
 import game.Locations;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * Created by kllrshrk on 11/18/14.
@@ -31,29 +28,29 @@ public class Queen extends Piece {
 
         Locations[] list = new Locations[64];
 
-        for (int i = 0; i < 8; i++) {
+        for (int i = 1; i <= 8; i++) {
             list[i] = new Locations(row + i, column);
         }
-        for (int i = 8; i < 16; i++) {
-            list[i] = new Locations(row - i, column);
+        for (int i = 1; i <= 8; i++) {
+            list[i + 7] = new Locations(row - i, column);
         }
-        for (int i = 16; i < 24; i++) {
-            list[i] = new Locations(row, column + i);
+        for (int i = 1; i <= 8; i++) {
+            list[i + 15] = new Locations(row, column + i);
         }
-        for (int i = 24; i < 32; i++) {
-            list[i] = new Locations(row, column - i);
+        for (int i = 1; i <= 8; i++) {
+            list[i + 23] = new Locations(row, column - i);
         }
-        for (int i = 32; i < 40; i++) {
-            list[i] = new Locations(row + i, column + i);
+        for (int i = 1; i <= 8; i++) {
+            list[i + 31] = new Locations(row + i, column + i);
         }
-        for (int i = 40; i < 48; i++) {
-            list[i] = new Locations(row + i, column - i);
+        for (int i = 1; i <= 8; i++) {
+            list[i + 39] = new Locations(row + i, column - i);
         }
-        for (int i = 48; i < 56; i++) {
-            list[i] = new Locations(row - i, column + i);
+        for (int i = 1; i <= 8; i++) {
+            list[i + 47] = new Locations(row - i, column + i);
         }
-        for (int i = 56; i < 64; i++) {
-            list[i] = new Locations(row - i, column - i);
+        for (int i = 1; i <= 8; i++) {
+            list[i + 55] = new Locations(row - i, column - i);
         }
 //        List rookMoves = Arrays.asList(new Rook(this.colorTeam.getTeam()).moveLocations(pos));
 //        List bishopMoves = Arrays.asList(new Bishop(this.colorTeam.getTeam()).moveLocations(pos));
