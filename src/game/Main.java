@@ -1,6 +1,7 @@
 package game;
 
 import graphics.GUI;
+
 import java.util.Scanner;
 
 /**
@@ -12,8 +13,8 @@ public class Main {
 
         Game game = new Game();
         Scanner input = new Scanner(System.in);
-        gui = new GUI(60);
-        gui.getGraphicsControl().updateBoard(game.board);
+        gui = new GUI(80);
+        gui.getGraphicsControl().updateBoard(game.getBoard());
         while (game.gameRunning){
             System.out.printf("Make a move: ");
             String move = input.nextLine();

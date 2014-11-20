@@ -2,12 +2,10 @@ package graphics;
 
 import game.Board;
 import game.Locations;
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.Insets;
-import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
 import pieces.Piece;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
 
 /**
  *
@@ -59,10 +57,19 @@ public class GraphicsController {
                 g.drawImage(image, BoardXOrigin + (cellXSpace * i), BoardYOrigin + (cellYSpace * j), null);
             }
         }
-        //Draws Gray Squares      
+        drawLabels(cellXSpace, cellYSpace, border, offset, g);
         g.setColor(c);
     }
 
+    private void drawLabels(int xSpace, int ySpace, int border, int offset, Graphics2D g) {
+        int alphaX = offset / 2;
+        int alphaY = ySpace / 2 + offset + border;
+        int numericX = xSpace / 2 + offset + border;
+        int numericY = ySpace * 8 + offset + 2 * border;
+        for (int i = 0; i < 8; i++) {
+            g.drawString("LOL");
+        }
+    }
     public void updateBoard(Board board) {
         lock = true;
         this.board = board;

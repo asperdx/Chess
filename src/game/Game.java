@@ -7,13 +7,19 @@ public class Game {
     public String turn;
     public boolean gameRunning;
     public Board board;
+
     public Game(){
+
         gameRunning = true;
         board = new Board();
         Setup setup = new Setup();
         setup.setupBoard(board);
         board.printBoard();
         newTurn();
+    }
+
+    public Board getBoard() {
+        return board;
     }
 
     public void newTurn(){
