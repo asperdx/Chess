@@ -67,7 +67,7 @@ public class GraphicsController {
         int numericX = xSpace / 2 + offset + border;
         int numericY = ySpace * 8 + offset + 2 * border;
         for (int i = 0; i < 8; i++) {
-            g.drawString("LOL");
+            //g.drawString("LOL");
         }
     }
     public void updateBoard(Board board) {
