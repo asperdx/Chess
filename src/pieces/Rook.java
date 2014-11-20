@@ -33,17 +33,17 @@ public class Rook extends Piece {
 
         Locations[] list = new Locations[32];
 
-        for (int i = 0; i < 8; i++) {
+        for (int i = 1; i <= 8; i++) {
             list[i] = new Locations(row + i, column);
         }
-        for (int i = 8; i < 16; i++) {
-            list[i] = new Locations(row - i, column);
+        for (int i = 1; i <= 8; i++) {
+            list[i + 7] = new Locations(row - i, column);
         }
-        for (int i = 16; i < 24; i++) {
-            list[i] = new Locations(row, column + i);
+        for (int i = 1; i <= 8; i++) {
+            list[i + 15] = new Locations(row, column + i);
         }
-        for (int i = 24; i < 32; i++) {
-            list[i] = new Locations(row, column - i);
+        for (int i = 1; i <= 8; i++) {
+            list[i + 23] = new Locations(row, column - i);
         }
 
         return list;
