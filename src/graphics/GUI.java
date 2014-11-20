@@ -4,6 +4,7 @@ import java.awt.Canvas;
 import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
+import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.Transparency;
 import java.awt.event.WindowAdapter;
@@ -48,7 +49,7 @@ public class GUI extends Thread {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setSize(width * scale, height * scale);
         frame.setVisible(true);
-
+        
         // Canvas
         canvas = new Canvas(config);
        canvas.setSize(width * scale, height * scale);
@@ -125,7 +126,7 @@ public class GUI extends Thread {
                 if (!isRunning) {
                     break main;
                 }
-                renderApplication(backgroundGraphics, width, height); // this calls your draw method
+                renderApplication(backgroundGraphics, canvas.getWidth(), canvas.getHeight(), frame.getInsets()); // this calls your draw method
                 // thingy
                if (scale != 1) {
                     bg.drawImage(background, 0, 0, width * scale, height
@@ -153,8 +154,8 @@ public class GUI extends Thread {
     public void updateApplication() {
     }
 
-    public void renderApplication(Graphics2D g, int width, int height) {
-        graphicsControl.render(g, width, height);
+    public void renderApplication(Graphics2D g, int width, int height, Insets insets) {
+        graphicsControl.render(g, width, height, insets);
     }
 
     public GraphicsController getGraphicsControl() {
