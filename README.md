@@ -1,7 +1,7 @@
 Chess
 =====
 
-Version 0.2
+Version 0.3
 ------
 
 Features:
@@ -11,10 +11,15 @@ Features:
 * Checks piece's team
 * Check pos for piece
 * Moves piece with board update
+* GUI
+* Valid moves
+
 
 
 Todo:
 ----
 
-* Add GUI
-* Valid Moves by Piece type
+* Pics of pieces
+* Queen, King, Knight paths
+* Checks, checkmates
+* drag and drop gui
