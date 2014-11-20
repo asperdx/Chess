@@ -13,6 +13,7 @@ public class Main {
         Game game = new Game();
         Scanner input = new Scanner(System.in);
         gui = new GUI(60);
+        gui.getGraphicsControl().updateBoard(game.board);
         while (game.gameRunning){
             System.out.printf("Make a move: ");
             String move = input.nextLine();
