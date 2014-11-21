@@ -15,6 +15,7 @@ public class GraphicsController {
 
     private boolean lock;
     private Board board;
+    public static final int OFFSET_SPACE = 25;
 
     public GraphicsController() {
 
@@ -25,7 +26,7 @@ public class GraphicsController {
             try {
                 width -= (insets.left + insets.right);
                 height -= (insets.top + insets.bottom);
-                drawBoard(width, height, 25, 5, g);
+                drawBoard(width, height, OFFSET_SPACE, 5, g);
             } catch (RenderException e) {
                 System.out.println("Rendering error: " + e.getMessage());
             }
@@ -63,11 +64,15 @@ public class GraphicsController {
 
     private void drawLabels(int xSpace, int ySpace, int border, int offset, Graphics2D g) {
         int alphaX = offset / 2;
-        int alphaY = ySpace / 2 + offset + border;
+        int alphaY = ySpace / 2 +  offset + 2 * border;
         int numericX = xSpace / 2 + offset + border;
-        int numericY = ySpace * 8 + offset + 2 * border;
+        int numericY = ySpace * 8 + 2 * offset + 2 * border;
         for (int i = 0; i < 8; i++) {
-            //g.drawString("LOL");
+            g.drawString(Integer.toString(i + 1), numericX, numericY);
+            numericX+= xSpace;
+        
+            g.drawString(Character.toString(Character.toChars('A' + i)[0]), alphaX, alphaY);
+            alphaY+=ySpace;
         }
     }
     public void updateBoard(Board board) {
