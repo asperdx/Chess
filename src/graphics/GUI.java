@@ -16,6 +16,7 @@ import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicInteger;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
+import game.Main;
 
 public class GUI extends Thread {
 
@@ -119,7 +120,7 @@ public class GUI extends Thread {
            //System.out.println(width + " " + height);
             long renderStart = System.nanoTime();
             updateApplication();
-            frame.setTitle("Chess Application version 1.0 " + FPS.intValue() + " FPS");
+            frame.setTitle("Chess Application version " + Main.getVersion() + "  " + FPS.intValue() + " FPS");
             // Update Graphics
             do {
                 Graphics2D bg = getBuffer();
