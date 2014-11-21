@@ -61,11 +61,11 @@ public class GUI extends Thread {
         canvas.createBufferStrategy(2);
         do {
             strategy = canvas.getBufferStrategy();
-        } while (strategy == null);        start();
+        } while (strategy == null);        
         this.FPSLimit = new AtomicInteger(FPSLimit);
         Timer x = new Timer();
        x.schedule(fpsCounter, 0, 1000);
-
+       start();
     }
 
     private class FrameClose extends WindowAdapter {
