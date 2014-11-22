@@ -16,7 +16,8 @@ public class GraphicsController {
     private boolean lock;
     private Board board;
     public static final int OFFSET_SPACE = 25;
-
+    private int width;
+    private int height;
     public GraphicsController() {
 
     }
@@ -31,6 +32,7 @@ public class GraphicsController {
                 System.out.println("Rendering error: " + e.getMessage());
             }
         }
+        updateVals(width, height);
 
     }
 
@@ -101,4 +103,33 @@ public class GraphicsController {
         double fontSize= pixels * Toolkit.getDefaultToolkit().getScreenResolution() / 72.0;
         return (float) fontSize;
     }
-}
+    public int[] getSquare(Point location){
+
+        int xDist = width - ((OFFSET_SPACE + 5) * 2);
+        int yDist = height - ((OFFSET_SPACE + 5) * 2);
+        int cellXSpace = xDist / 8;
+        int cellYSpace = yDist / 8;
+        int BoardXOrigin = OFFSET_SPACE + 5 + ((xDist % 8) / 2);
+        int BoardYOrigin = OFFSET_SPACE + 5 + ((yDist % 8) / 2);
+        int data[] = new int[2];
+        if (location.x > BoardXOrigin + xDist || location.x < BoardXOrigin) return null;
+        if (location.y > BoardYOrigin + yDist || location.y < BoardYOrigin) return null;
+        data[0] = ((location.x - BoardXOrigin) / cellXSpace) + 1;
+        data[1] = ((location.y - BoardYOrigin) / cellYSpace) + 'a' - 2;
+        return data;
+    }
+
+    private void updateVals(int width, int height) {
+        this.height = height;
+        this.width = width;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+    
+}   
