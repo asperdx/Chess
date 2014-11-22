@@ -89,6 +89,7 @@ public class GraphicsController {
         try {           
             Piece p = board.getBoard()[BoardLoc.getRow()][BoardLoc.getColumn()];
             g.setColor(p.colorTeam.getTeam().equals("white") ? Color.BLUE : Color.RED);
+            g.setFont(g.getFont().deriveFont(getFontHeight(height - 4)));
             p.draw(g, width, height);     
         } catch (NullPointerException e) {
 
@@ -96,8 +97,8 @@ public class GraphicsController {
         return tileData;
     }
 
-    public int getFontHeight(int pixels) { //Unfinished
-        int x = 100;
-        return x;
+    public float getFontHeight(int pixels) { //Unfinished
+        double fontSize= pixels * Toolkit.getDefaultToolkit().getScreenResolution() / 72.0;
+        return (float) fontSize;
     }
 }

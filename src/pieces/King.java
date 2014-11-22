@@ -1,6 +1,8 @@
 package pieces;
 
 import game.Locations;
+import java.awt.Color;
+import java.awt.Graphics2D;
 
 /**
  * Created by kllrshrk on 11/18/14.
@@ -43,5 +45,12 @@ public class King extends Piece {
         list[7] = new Locations(row + 1, column - 1);
 
         return list;
+    }
+        public void draw(Graphics2D g, int width, int height){
+        g.fillOval(2, 2, width - 4, height - 4);
+        g.setColor(Color.BLACK);
+        g.drawString(toString(), 
+                width / 2 - g.getFontMetrics().charWidth(toString().charAt(0) / 3), 
+                height - 2);
     }
 }

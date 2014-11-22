@@ -90,20 +90,20 @@ public class Pawn extends Piece {
         return list;
     } 
 
-    @Override
-    public void draw(Graphics2D g, int width, int height) {
-        int topRad = Math.min(width, height) / 2;
-        g.fillOval((width / 2) - (topRad / 2), 5 , topRad, topRad);
-        int[] xPoints = new int[((width /  2) - (width / 4)) * 2];
-        int[] yPoints = new int[xPoints.length];
-        for (int i = 0; i < yPoints.length / 2; i++) {
-            xPoints[i] += (width / 4) + i;
-            xPoints[xPoints.length - (i + 1)] += (width / 2 + width / 4) - i;
-            yPoints[i] = (height - (int)Math.pow(i / 2, 2));
-            yPoints[xPoints.length - (i + 1)] = (height - (int) Math.pow(i / 2, 2));
-            
-        }
-        //g.fillPolygon(xPoints, yPoints, xPoints.length);
-    }
+//    @Override
+//    public void draw(Graphics2D g, int width, int height) {
+//        int topRad = Math.min(width, height) / 2;
+//        g.fillOval((width / 2) - (topRad / 2), 5 , topRad, topRad);
+//        int[] xPoints = new int[((width /  2) - (width / 4)) * 2];
+//        int[] yPoints = new int[xPoints.length];
+//        for (int i = 0; i < yPoints.length / 2; i++) {
+//            xPoints[i] += (width / 4) + i;
+//            xPoints[xPoints.length - (i + 1)] += (width / 2 + width / 4) - i;
+//            yPoints[i] = (height - (int)Math.pow(i / 2, 2));
+//            yPoints[xPoints.length - (i + 1)] = (height - (int) Math.pow(i / 2, 2));
+//            
+//        }
+//        //g.fillPolygon(xPoints, yPoints, xPoints.length);
+//    }
     
 }

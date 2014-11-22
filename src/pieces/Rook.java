@@ -1,6 +1,7 @@
 package pieces;
 
 import game.Locations;
+import java.awt.Graphics2D;
 
 import java.util.ArrayList;
 
@@ -82,4 +83,19 @@ public class Rook extends Piece {
 
         return list;
     }
+
+//    @Override
+//    public void draw(Graphics2D g, int width, int height) {
+//        int[] xPoints = new int[((width /  2) - (width / 4)) * 2];
+//        int[] yPoints = new int[xPoints.length];
+//        for (int i = 0; i < yPoints.length / 2; i++) {
+//            xPoints[i] += (width / 4) + i;
+//            xPoints[xPoints.length - (i + 1)] += (width / 2 + width / 4) - i;
+//            yPoints[i] = (height - (int)Math.pow(i / 2, 2));
+//            yPoints[xPoints.length - (i + 1)] = (height - (int) Math.pow(i / 2, 2));
+//            
+//        }
+//        //g.fillPolygon(xPoints, yPoints, xPoints.length);
+//    }
+    
 }
