@@ -1,4 +1,5 @@
 package game;
+
 /**
  * Written by TheSoberRussian on 11/18/14.
  */
@@ -8,7 +9,7 @@ public class Game {
     public boolean gameRunning;
     public Board board;
 
-    public Game(){
+    public Game() {
 
         gameRunning = true;
         board = new Board();
@@ -22,17 +23,17 @@ public class Game {
         return board;
     }
 
-    public void newTurn(){
-        if (turn == null || turn.equals("black")){
+    public void newTurn() {
+        if (turn == null || turn.equals("black")) {
             turn = "white";
-        }else{
+        } else {
             turn = "black";
         }
 
         System.out.printf("It is %s turn\'s to play\n", turn);
     }
 
-    public void makeMove(String turn) {
+    public void makeMove(String turn, boolean verbose) {
 
         String[] pos = turn.split(" to ");
         if (pos.length != 2) {
@@ -56,32 +57,35 @@ public class Game {
                         Main.getGui().getGraphicsControl().updateBoard(board);
                         newTurn();
                     } else {
-                        System.out.println("That piece can't move there, try again");
+                        if (verbose) {
+                            System.out.println("That piece can't move there, try again");
+                        }
                     }
                     break;
                 case 1:
-                    System.out.println("Your team doesn't own that piece, try again");
+                    if (verbose) {
+                        System.out.println("Your team doesn't own that piece, try again");
+                    }
                     break;
                 case 2:
-                    System.out.println("There isn't a piece there. Try again");
+                    if (verbose) {
+                        System.out.println("There isn't a piece there. Try again");
+                    }
                     break;
             }
         }
 
-
     }
-
 
     public int validPos(Locations pos) {
 
-
-        if (!board.emptySpot(pos))
+        if (!board.emptySpot(pos)) {
             if (board.getTeam(pos).checkTeam(turn)) {
                 return 0;
             } else {
                 return 1;
             }
-        else {
+        } else {
             return 2;
         }
     }

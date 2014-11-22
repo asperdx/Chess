@@ -20,7 +20,7 @@ public class Main {
         while (game.gameRunning){
             System.out.printf("Make a move: ");
             String move = input.nextLine();
-            game.makeMove(move);
+            game.makeMove(move, true);
             
         }
 
