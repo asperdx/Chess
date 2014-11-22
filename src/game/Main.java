@@ -10,9 +10,10 @@ import java.util.Scanner;
 public class Main {
     private static GUI gui;
     private static String version = "0.3";
+    private static Game game;
     public static void main(String[] args) {
 
-        Game game = new Game();
+        game = new Game();
         Scanner input = new Scanner(System.in);
         gui = new GUI(80);
         gui.getGraphicsControl().updateBoard(game.getBoard());
@@ -31,6 +32,10 @@ public class Main {
 
     public static String getVersion() {
         return version;
+    }
+
+    public static Game getGame() {
+        return game;
     }
     
 }   
