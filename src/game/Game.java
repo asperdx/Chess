@@ -37,12 +37,18 @@ public class Game {
 
         String[] pos = turn.split(" to ");
         if (pos.length != 2) {
-            System.out.println("Invalid use. Usage: [a-h][1-8] to [a-hh][1-8]");
+            if (verbose) {
+                System.out.println("Invalid use. Usage: [a-h][1-8] to [a-hh][1-8]");
+            }
 
         } else if (!board.checkLocation(pos[0].toLowerCase())) {
-            System.out.println(pos[0] + " is invalid. Usage: [a-h][1-8] to [a-hh][1-8]");
+            if (verbose) {
+                System.out.println(pos[0] + " is invalid. Usage: [a-h][1-8] to [a-hh][1-8]");
+            }
         } else if (!board.checkLocation(pos[1].toLowerCase())) {
-            System.out.println(pos[1] + " is invalid. Usage: [a-h][1-8] to [a-h][1-8]");
+            if (verbose) {
+                System.out.println(pos[1] + " is invalid. Usage: [a-h][1-8] to [a-h][1-8]");
+            }
         } else {
             int x1 = (pos[0].charAt(0)) - 97;
             int y1 = Integer.parseInt(pos[0].substring(1)) - 1;

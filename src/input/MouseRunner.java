@@ -29,24 +29,25 @@ public class MouseRunner implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println(e.getSource().toString());
-        clicked[0] = clicked[1];
-        int[] squareData = Main.getGui().getGraphicsControl().getSquare(e.getLocationOnScreen());
-        if (squareData != null) {
-            String squareString = new String(Character.toChars(squareData[1])).concat(Integer.toString(squareData[0]));
-            System.out.println(squareString);
-            int x1 = (squareString.charAt(0)) - 97;
-            int y1 = Integer.parseInt(squareString.substring(1)) - 1;
-            clicked[1] = new Locations(x1, y1);
-            if (clicked[0] != null && clicked[1] != null) {
-                if (Main.getGame().validPos(clicked[0]) == 0) {
-                    Board board = Main.getGame().getBoard();
-                    if (board.movePiece(clicked[0], clicked[1])) {
-                        board.printBoard();
-                        Main.getGui().getGraphicsControl().updateBoard(board);
-                        Main.getGame().newTurn();
-                        clicked[0] = clicked[1] = null;
+        if (Main.getGui().getGraphicsControl().getInnerBoardBounds().contains(e.getPoint())) {
+            clicked[0] = clicked[1];
+            Locations squareData = Main.getGui().getGraphicsControl().getSquare(e.getPoint());
+            if (squareData != null) {
+                String squareString = Locations.toCoordinateString(squareData);
+                int x1 = (squareString.charAt(0)) - 97;
+                int y1 = Integer.parseInt(squareString.substring(1)) - 1;
+                clicked[1] = new Locations(x1, y1);
+                if (clicked[0] != null && clicked[1] != null) {
+                    if (Main.getGame().validPos(clicked[0]) == 0) {
+                        Board board = Main.getGame().getBoard();
+                        if (board.movePiece(clicked[0], clicked[1])) {
+                            board.printBoard();
+                            Main.getGui().getGraphicsControl().updateBoard(board);
+                            Main.getGame().newTurn();
+
+                        }
                     }
+                    clicked[0] = clicked[1] = null;
                 }
             }
         }
@@ -54,27 +55,32 @@ public class MouseRunner implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        int[] squareData = Main.getGui().getGraphicsControl().getSquare(e.getLocationOnScreen());
-        if (squareData != null) {
-            initialLoc = (new String(Character.toChars(squareData[1])).concat(Integer.toString(squareData[0])));
+        if (Main.getGui().getGraphicsControl().getInnerBoardBounds().contains(e.getPoint())) {
+            Locations squareData = Main.getGui().getGraphicsControl().getSquare(e.getPoint());
+            if (squareData != null) {
+                initialLoc = Locations.toCoordinateString(squareData);
+            }
         }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        int[] squareData = Main.getGui().getGraphicsControl().getSquare(e.getLocationOnScreen());
-        if (squareData != null) {
-            endLoc = (new String(Character.toChars(squareData[1])).concat(Integer.toString(squareData[0])));
-            System.out.println(initialLoc + " to " + endLoc);
-            if (clicked[1] != null) {
-                Main.getGame().makeMove(initialLoc + " to " + endLoc, false);
+        if (Main.getGui().getGraphicsControl().getInnerBoardBounds().contains(e.getPoint())) {
+            Locations squareData = Main.getGui().getGraphicsControl().getSquare(e.getPoint());
+            if (squareData != null) {
+                initialLoc = Locations.toCoordinateString(squareData);
+                System.out.println(initialLoc + " to " + endLoc);
+                if (clicked[1] != null) {
+                    Main.getGame().makeMove(initialLoc + " to " + endLoc, false);
+                }
+                initialLoc = endLoc = "";
             }
-            initialLoc = endLoc = "";
         }
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
+
     }
 
     @Override

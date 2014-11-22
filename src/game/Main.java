@@ -12,7 +12,6 @@ public class Main {
     private static String version = "0.3";
     private static Game game;
     public static void main(String[] args) {
-
         game = new Game();
         Scanner input = new Scanner(System.in);
         gui = new GUI(80);
@@ -23,7 +22,6 @@ public class Main {
             game.makeMove(move, true);
             
         }
-
 
     }
     public static GUI getGui() {

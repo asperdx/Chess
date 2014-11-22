@@ -46,4 +46,9 @@ public class Locations {
 
         return sameRow && sameColumn;
     }
+    public static String toCoordinateString(Locations loc){
+        String coordString = "";
+        coordString = new String(Character.toChars(loc.row + 97)).concat(Integer.toString(loc.row + 1));
+        return coordString;
+    }
 }
