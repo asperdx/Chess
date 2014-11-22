@@ -29,6 +29,7 @@ public class MouseRunner implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        System.out.println(e.getSource().toString());
         clicked[0] = clicked[1];
         int[] squareData = Main.getGui().getGraphicsControl().getSquare(e.getLocationOnScreen());
         if (squareData != null) {

@@ -18,11 +18,13 @@ public class GraphicsController {
     public static final int OFFSET_SPACE = 25;
     private int width;
     private int height;
-    public GraphicsController() {
+    private Insets insets;
 
+    public GraphicsController(Insets insets) {
+        this.insets = insets;
     }
 
-    void render(Graphics2D g, int width, int height, Insets insets) {
+    void render(Graphics2D g, int width, int height) {
         if (!lock) {
             try {
                 width -= (insets.left + insets.right);
@@ -66,17 +68,18 @@ public class GraphicsController {
 
     private void drawLabels(int xSpace, int ySpace, int border, int offset, Graphics2D g) {
         int alphaX = offset / 2;
-        int alphaY = ySpace / 2 +  offset + 2 * border;
+        int alphaY = ySpace / 2 + offset + 2 * border;
         int numericX = xSpace / 2 + offset + border;
         int numericY = ySpace * 8 + 2 * offset + 2 * border;
         for (int i = 0; i < 8; i++) {
             g.drawString(Integer.toString(i + 1), numericX, numericY);
-            numericX+= xSpace;
-        
+            numericX += xSpace;
+
             g.drawString(Character.toString(Character.toChars('A' + i)[0]), alphaX, alphaY);
-            alphaY+=ySpace;
+            alphaY += ySpace;
         }
     }
+
     public void updateBoard(Board board) {
         lock = true;
         this.board = board;
@@ -88,11 +91,11 @@ public class GraphicsController {
         Graphics2D g = tileData.createGraphics();
         g.setBackground((BoardLoc.getRow() + BoardLoc.getColumn()) % 2 == 0 ? Color.WHITE : Color.GRAY);
         g.clearRect(0, 0, width, height);
-        try {           
+        try {
             Piece p = board.getBoard()[BoardLoc.getRow()][BoardLoc.getColumn()];
             g.setColor(p.colorTeam.getTeam().equals("white") ? Color.BLUE : Color.RED);
             g.setFont(g.getFont().deriveFont(getFontHeight(height - 4)));
-            p.draw(g, width, height);     
+            p.draw(g, width, height);
         } catch (NullPointerException e) {
 
         }
@@ -100,10 +103,11 @@ public class GraphicsController {
     }
 
     public float getFontHeight(int pixels) { //Unfinished
-        double fontSize= pixels * Toolkit.getDefaultToolkit().getScreenResolution() / 72.0;
+        double fontSize = pixels * Toolkit.getDefaultToolkit().getScreenResolution() / 72.0;
         return (float) fontSize;
     }
-    public int[] getSquare(Point location){
+
+    public int[] getSquare(Point location) {
 
         int xDist = width - ((OFFSET_SPACE + 5) * 2);
         int yDist = height - ((OFFSET_SPACE + 5) * 2);
@@ -112,10 +116,16 @@ public class GraphicsController {
         int BoardXOrigin = OFFSET_SPACE + 5 + ((xDist % 8) / 2);
         int BoardYOrigin = OFFSET_SPACE + 5 + ((yDist % 8) / 2);
         int data[] = new int[2];
-        if (location.x > BoardXOrigin + xDist || location.x < BoardXOrigin) return null;
-        if (location.y > BoardYOrigin + yDist || location.y < BoardYOrigin) return null;
+        location.x -= (insets.left + insets.right);
+        location.y -= (insets.top + insets.bottom);
+        if (location.x > BoardXOrigin + xDist || location.x < BoardXOrigin) {
+            return null;
+        }
+        if (location.y > BoardYOrigin + yDist || location.y < BoardYOrigin) {
+            return null;
+        }
         data[0] = ((location.x - BoardXOrigin) / cellXSpace) + 1;
-        data[1] = ((location.y - BoardYOrigin) / cellYSpace) + 'a' - 2;
+        data[1] = ((location.y - BoardYOrigin) / cellYSpace) + 'a';
         return data;
     }
 
@@ -131,5 +141,5 @@ public class GraphicsController {
     public int getHeight() {
         return height;
     }
-    
-}   
+
+}

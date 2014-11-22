@@ -38,7 +38,7 @@ public class GUI extends Thread {
             .getDefaultScreenDevice()
             .getDefaultConfiguration();
     private FPSCounter fpsCounter = new FPSCounter(FPS);
-    private GraphicsController graphicsControl = new GraphicsController();
+    private GraphicsController graphicsControl;
     // create a hardware accelerated image
     public final BufferedImage create(final int width, final int height, final boolean alpha) {
         return config.createCompatibleImage(width, height, alpha ? Transparency.TRANSLUCENT : Transparency.OPAQUE);
@@ -56,7 +56,7 @@ public class GUI extends Thread {
         canvas = new Canvas(config);
        canvas.setSize(width * scale, height * scale);
         frame.add(canvas, 0);
-
+        
         // Background & Buffer
         background = create(width, height, false);
         canvas.createBufferStrategy(2);
@@ -67,6 +67,7 @@ public class GUI extends Thread {
         Timer x = new Timer();
        x.schedule(fpsCounter, 0, 1000);
        canvas.addMouseListener(new MouseRunner());
+       graphicsControl = new GraphicsController(frame.getInsets());
        start();
     }
 
@@ -158,7 +159,7 @@ public class GUI extends Thread {
     }
 
     public void renderApplication(Graphics2D g, int width, int height, Insets insets) {
-        graphicsControl.render(g, width, height, insets);
+        graphicsControl.render(g, width, height);
     }
 
     public GraphicsController getGraphicsControl() {
