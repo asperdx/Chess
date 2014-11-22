@@ -157,7 +157,7 @@ public class GraphicsController {
         int x  = location.x - (theBoard.x);
         int y  = location.y - (theBoard.y);
         Locations loc = new Locations(y / (theBoard.height / 8), x / (theBoard.width / 8));
-        System.out.println(loc.toString());
+        //System.out.println(loc.toString());
         return loc;
     }
 

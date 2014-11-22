@@ -28,7 +28,7 @@ public class ColorTeam {
         boolean sameTeam = false;
 
         if (object != null && object instanceof ColorTeam) {
-            sameTeam = this.team == ((ColorTeam) object).team;
+            sameTeam = this.team.equals(((ColorTeam) object).team);
         }
 
         return sameTeam;
