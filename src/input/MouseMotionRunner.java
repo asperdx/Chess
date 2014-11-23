@@ -27,8 +27,8 @@ public class MouseMotionRunner implements MouseMotionListener {
     @Override
     public void mouseMoved(MouseEvent e) {
         Locations l = Main.getGui().getGraphicsControl().getSquare(e.getPoint());
-        if (l != null)
-        System.out.println(Locations.toCoordinateString(l));
+        //if (l != null)
+        //System.out.println(Locations.toCoordinateString(l));
     }
     
 }

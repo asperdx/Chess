@@ -66,7 +66,7 @@ public class InputHandler {
         String moveString = Locations.toCoordinateString(moves[1]) + " to " +
                  Locations.toCoordinateString(moves[0]);
         System.out.println(moveString);
-      Main.getGame().makeMove(moveString, true);
+      Main.getGame().makeMove(moveString, false);
     }
 
     static void startDrag(Point point) {
