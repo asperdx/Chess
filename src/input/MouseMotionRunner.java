@@ -5,6 +5,8 @@
  */
 package input;
 
+import game.Locations;
+import game.Main;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
@@ -24,6 +26,9 @@ public class MouseMotionRunner implements MouseMotionListener {
 
     @Override
     public void mouseMoved(MouseEvent e) {
+        Locations l = Main.getGui().getGraphicsControl().getSquare(e.getPoint());
+        if (l != null)
+        System.out.println(Locations.toCoordinateString(l));
     }
     
 }

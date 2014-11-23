@@ -63,8 +63,8 @@ public class InputHandler {
     }
 
     private static void ExecuteMove() {
-        String moveString = Locations.toCoordinateString(moves[0]) + " to " +
-                 Locations.toCoordinateString(moves[1]);
+        String moveString = Locations.toCoordinateString(moves[1]) + " to " +
+                 Locations.toCoordinateString(moves[0]);
         System.out.println(moveString);
       Main.getGame().makeMove(moveString, true);
     }

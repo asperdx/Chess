@@ -101,9 +101,10 @@ public class GraphicsController {
             alphaY += ySpace;
         }
     }
-    
+
     /**
      * Updates the board data
+     *
      * @param board the new board
      */
     public void updateBoard(Board board) {
@@ -149,16 +150,21 @@ public class GraphicsController {
 
     /**
      *
-     * @param location a point, which should be inside getInnerBoardBounds()
+     * @param pixelPoint a point in the coordinate space of the board
      * @return a Location object representing the grid position of location
+     * @return null if the point is not inside the board
      */
-    public Locations getSquare(Point location) {
+    public Locations getSquare(Point pixelPoint) {
+
         Rectangle theBoard = this.getInnerBoardBounds();
-        int x  = location.x - (theBoard.x);
-        int y  = location.y - (theBoard.y);
-        Locations loc = new Locations(y / (theBoard.height / 8), x / (theBoard.width / 8));
-        //System.out.println(loc.toString());
-        return loc;
+        if (this.getInnerBoardBounds().contains(pixelPoint)) {
+            int x = pixelPoint.x - (theBoard.x);
+            int y = pixelPoint.y - (theBoard.y);
+            Locations loc = new Locations(y / (theBoard.height / 8), x / (theBoard.width / 8));
+            //System.out.println(loc.toString());
+            return loc;
+        }
+        return null;
     }
 
     /**
