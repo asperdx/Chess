@@ -5,18 +5,17 @@
  */
 package input;
 
-import game.Board;
 import game.Locations;
 import game.Main;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.concurrent.atomic.AtomicInteger;
+import javax.swing.event.MouseInputListener;
 
 /**
  *
  * @author David
  */
-public class MouseRunner implements MouseListener {
+public class MouseRunner implements MouseInputListener {
 
 
     public MouseRunner() {
@@ -46,5 +45,16 @@ public class MouseRunner implements MouseListener {
     @Override
     public void mouseExited(MouseEvent e) {
     }
+    
+    @Override
+    public void mouseDragged(MouseEvent e) {
+       InputHandler.startDrag(e.getPoint());
+    }
 
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        Locations l = Main.getGui().getGraphicsControl().getSquare(e.getPoint());
+        if (l != null)
+        System.out.println(Locations.toCoordinateString(l));
+    }
 }

@@ -17,7 +17,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 import game.Main;
-import input.MouseMotionRunner;
 import input.MouseRunner;
 
 public class GUI extends Thread {
@@ -67,8 +66,8 @@ public class GUI extends Thread {
         this.FPSLimit = new AtomicInteger(FPSLimit);
         Timer x = new Timer();
        x.schedule(fpsCounter, 0, 1000);
+       canvas.addMouseMotionListener(new MouseRunner());
        canvas.addMouseListener(new MouseRunner());
-       canvas.addMouseMotionListener(new MouseMotionRunner());
        graphicsControl = new GraphicsController(frame.getInsets());
        start();
     }
